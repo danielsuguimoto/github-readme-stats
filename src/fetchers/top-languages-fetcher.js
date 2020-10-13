@@ -9,7 +9,7 @@ const fetcher = (variables, token) => {
       query userInfo($login: String!) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: [COLLABORATOR, OWNER], first: 100) {
+          repositories(ownerAffiliations: [COLLABORATOR, OWNER], first: 100, orderBy: { field: PUSHED_AT, direction: DESC}) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
